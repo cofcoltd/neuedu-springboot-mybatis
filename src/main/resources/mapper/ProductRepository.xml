@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.repository.ProductRepository">
+
+    <select id="queryProducts" resultType="com.entity.Product">
+        select
+          p.pid , p.pname , p.price , p.description , p.imgs
+        from
+          product p
+    </select>
+
+    <insert id="saveProduct" useGeneratedKeys="true" keyProperty="pid" keyColumn="pid" parameterType="com.entity.Product">
+
+        INSERT INTO
+          product (pname , price , description , imgs)
+        VALUES ( #{pname} , #{price} , #{description} , #{imgs} )
+
+
+    </insert>
+
+    <delete id="removeProductById" parameterType="Integer">
+
+        DELETE FROM product
+        where pid = #{pid}
+    </delete>
+
+
+
+
+</mapper>
